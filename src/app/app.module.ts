@@ -15,13 +15,15 @@ import { HeaderComponent } from './ui/header/header.component';
 import { tasksReducer } from './store/reducers/tasks.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { TasksEffects } from './store/effects/tasks.effect';
+import { TasksWidgetComponent } from './components/tasks-widget/tasks-widget.component';
 @NgModule({
   declarations: [
     AppComponent,
     TasksComponent,
     TaskComponent,
     TaskFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    TasksWidgetComponent
   ],
   imports: [
     BrowserModule,

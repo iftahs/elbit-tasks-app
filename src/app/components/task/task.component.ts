@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Task } from 'src/app/models/task';
+import { deleteTask } from 'src/app/store/actions/tasks.actions';
 
 @Component({
   selector: 'app-task',
@@ -9,6 +11,10 @@ import { Task } from 'src/app/models/task';
 export class TaskComponent {
   @Input() task!: Task;
 
-  constructor() { }
+  constructor(private store: Store) { }
+
+  onDeleteClick() {
+    this.store.dispatch(deleteTask({ssid: this.task.ssid}));
+  }
 
 }
