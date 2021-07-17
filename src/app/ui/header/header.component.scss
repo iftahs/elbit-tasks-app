@@ -1,0 +1,15 @@
+header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    font-size: 33px;
+    box-shadow: 0 0 9px 6px #ccc;
+    background-color: #a8bfaf;
+    font-weight: bold;
+    padding-left: 11px;
+    z-index: 20;
+
+    img {
+        margin: auto;
+    }
+}

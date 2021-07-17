@@ -1,0 +1,74 @@
+@import './styles/theme.scss';
+
+.app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    main {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        width: 70%;
+        flex: 1;
+        background-color: $background-color;
+
+        @media (max-width: 1000px) {
+            width: 80%;
+        }
+
+        @media (max-width: 800px) {
+            width: 90%;
+        }
+
+        @media (max-width: 600px) {
+            width: 100%;
+            border: none;
+        }
+
+        &__loader-container {
+            flex: 1;
+        }
+
+        &__no-tasks {
+            margin: 40px;
+        }
+    }
+
+    &__add-todo-button {
+        width: 30px;
+        height: 30px;
+        position: fixed;
+        right: 26px;
+        top: 20px;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto;
+        background-color: $done-color;
+        cursor: pointer;
+        color: white;
+        box-shadow: 2px 2px #ccc;
+
+        z-index: 20;
+        &:hover {
+            background-color: $edit-color;
+        }
+
+        &__loading {
+            animation: spin 1.2s linear infinite;
+            @keyframes spin {
+                0% {
+                  transform: rotate(0deg);
+                }
+                100% {
+                  transform: rotate(360deg);
+                }
+              }
+        }
+    }
+}

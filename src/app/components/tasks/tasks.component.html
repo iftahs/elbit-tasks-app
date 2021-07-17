@@ -1,0 +1,6 @@
+<div class="list">
+    <div class="list__title">{{title}}</div>
+    <ng-container *ngFor="let task of tasks">
+        <app-task [task]="task"></app-task>
+    </ng-container>
+</div>

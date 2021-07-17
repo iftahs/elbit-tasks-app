@@ -1,0 +1,25 @@
+{
+    "tasks": [
+        {
+            "id": "fk30d",
+            "title": "Finish Elbit assignment",
+            "description": "I need to finish the assignemnt before the interview",
+            "dateAdded": "07/22/2021",
+            "done": false
+        },
+        {
+            "id": "fd49s",
+            "title": "Start packing",
+            "description": "Pack my apartment before moving.",
+            "dateAdded": "07/13/2021",
+            "done": false
+        },
+        {
+            "id": "v950s",
+            "title": "Go to reserves",
+            "description": "Go to reserves next week",
+            "dateAdded": "07/13/2021",
+            "done": true
+        }
+    ]
+}
