@@ -1,6 +1,6 @@
 <div class="item">
     <div class="item__left-side">
-        <div class="item__left-side__status-icon" [ngClass]="{'item-todo__left-side__status-icon': !task.isDone}">
+        <div class="item__left-side__status-icon" [ngClass]="{'item-todo__left-side__status-icon': !task.isDone}" (click)="onCheckClick()">
             <img src="../../../assets/icons/done_black_24dp.svg" *ngIf="task.isDone">
         </div>
         <div>

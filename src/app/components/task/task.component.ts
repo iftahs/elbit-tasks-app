@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Task } from 'src/app/models/task';
-import { deleteTask } from 'src/app/store/actions/tasks.actions';
+import { deleteTask, editTask } from 'src/app/store/actions/tasks.actions';
 
 @Component({
   selector: 'app-task',
@@ -20,6 +20,15 @@ export class TaskComponent {
 
   onEditClick() {
     this.router.navigate([`edit`, this.task.ssid])
+  }
+
+  onCheckClick() {
+    const updatedTask: Task = {
+      ...this.task,
+      isDone: !this.task.isDone,
+    }
+
+    this.store.dispatch(editTask({task: updatedTask}));
   }
 
 }
