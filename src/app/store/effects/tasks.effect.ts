@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, mergeMap, catchError, exhaustMap, switchMap } from 'rxjs/operators';
-import { EMPTY, Observable, of } from 'rxjs';
+import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
+import { map, mergeMap, catchError, exhaustMap, switchMap, tap } from 'rxjs/operators';
+import { concat, EMPTY } from 'rxjs';
 import { TasksService } from "src/app/services/tasksService";
-import { ActionTypes, deleteTask, deleteTaskDone, deleteTaskError } from "../actions/tasks.actions";;
+import { ActionTypes, addTask, deleteTask, editTask } from "../actions/tasks.actions";import { Router } from "@angular/router";
+import { Task } from "src/app/models/task";
+;
 
 @Injectable()
 export class TasksEffects {
@@ -43,8 +45,61 @@ export class TasksEffects {
             ))
     ));
 
+    addTask$ = createEffect(() => this.actions$.pipe(
+        ofType(addTask),
+        exhaustMap((action) => this.tasksService.post(action.task)
+            .pipe(
+                map((res) => {
+                    const task: Task = {
+                        title: action.task.title ?? '',
+                        description: action.task.description ?? '',
+                        isDone: false,
+                        ssid: res.name
+                    }
+
+                    return {
+                        type: ActionTypes.addTaskDone,
+                        task: task
+                    }
+                }),
+                catchError(() => EMPTY)
+            ))
+    ));
+
+    addTaskDone$ = createEffect(() => this.actions$.pipe(
+        ofType(ActionTypes.addTaskDone),
+        tap(() => this.router.navigate(['/']))
+    ), {dispatch: false})
+
+    editTask$ = createEffect(() => this.actions$.pipe(
+        ofType(editTask),
+        exhaustMap((action) => this.tasksService.update(action.task)
+            .pipe(
+                map((res) => {
+                    const task: Task = {
+                        title: res.title ?? action.task.title ?? '',
+                        description: res.description ?? action.task.description ?? '',
+                        isDone: res.isDone ?? action.task.isDone ?? false,
+                        ssid: action.task.ssid ?? ''
+                    }
+
+                    return {
+                        type: ActionTypes.editTaskDone,
+                        task: task
+                    }
+                }),
+                catchError(() => EMPTY)
+            ))
+    ));
+
+    editTaskDone$ = createEffect(() => this.actions$.pipe(
+        ofType(ActionTypes.editTaskDone),
+        tap(() => this.router.navigate(['/']))
+    ), {dispatch: false})
+
     constructor(
         private actions$: Actions,
-        private tasksService: TasksService
+        private tasksService: TasksService,
+        private router: Router
     ) { }
 }

@@ -6,6 +6,7 @@ import { TasksWidgetComponent } from './components/tasks-widget/tasks-widget.com
 const routes: Routes = [
   { path: '', component: TasksWidgetComponent },
   { path: 'edit', component: TaskFormComponent },
+  { path: 'edit/:id', component: TaskFormComponent },
   { path: '',   redirectTo: '/', pathMatch: 'full' }
 ];
 

@@ -4,15 +4,19 @@ import { Task } from 'src/app/models/task';
 export enum ActionTypes {
     fetchTasks = '[Tasks] Fetch',
     fetchTasksDone = '[Tasks] Fetch Done',
-    fetchTasksError = '[Tasks] Fetch Error',
     deleteTask = '[Tasks] Delete',
     deleteTaskDone = '[Tasks] Delete Done',
-    deleteTaskError = '[Tasks] Delete Error'
+    addTask = '[Tasks] Add Task',
+    addTaskDone = '[Tasks] Add Task Done',
+    editTask = '[Tasks] Edit Task',
+    editTaskDone = '[Tasks] Edit Task Done',
 }
 
 export const fetchTasks = createAction(ActionTypes.fetchTasks);
 export const fetchTasksDone = createAction(ActionTypes.fetchTasksDone, props<{ tasks: Task[] }>());
-export const fetchTasksError = createAction(ActionTypes.fetchTasksError);
 export const deleteTask = createAction(ActionTypes.deleteTask, props<{ ssid: string }>());
 export const deleteTaskDone = createAction(ActionTypes.deleteTaskDone, props<{ ssid: string }>());
-export const deleteTaskError = createAction(ActionTypes.deleteTaskError);
+export const addTask = createAction(ActionTypes.addTask, props<{ task: Partial<Task> }>());
+export const addTaskDone = createAction(ActionTypes.addTaskDone, props<{ task: Task }>());
+export const editTask = createAction(ActionTypes.editTask, props<{ task: Partial<Task> }>());
+export const editTaskDone = createAction(ActionTypes.editTaskDone, props<{ task: Task }>());

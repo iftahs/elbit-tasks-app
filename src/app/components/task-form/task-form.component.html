@@ -1,1 +1,14 @@
-<p>task-form works!</p>
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form__control">
+        <label>Title</label>
+        <input type="text" formControlName="title">
+    </div>
+    <div class="form__control">
+        <label>Description</label>
+        <textarea formControlName="description" rows="5" ></textarea>
+    </div>
+    <div class="form__actions">
+        <button class="form__actions--cancel" type="button" (click)="onCancel()">CANCEL</button>
+        <button class="form__actions--add" type="submit" [disabled]="form.invalid">{{editMode ? 'UPDATE' : 'ADD' }} TASK</button>
+    </div>
+</form>

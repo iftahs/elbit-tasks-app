@@ -16,6 +16,7 @@ import { tasksReducer } from './store/reducers/tasks.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { TasksEffects } from './store/effects/tasks.effect';
 import { TasksWidgetComponent } from './components/tasks-widget/tasks-widget.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { TasksWidgetComponent } from './components/tasks-widget/tasks-widget.com
     AppRoutingModule,
     NoopAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({ tasksReducer: tasksReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
