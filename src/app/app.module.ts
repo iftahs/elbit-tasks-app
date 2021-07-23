@@ -17,6 +17,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { TasksEffects } from './store/effects/tasks.effect';
 import { TasksWidgetComponent } from './components/tasks-widget/tasks-widget.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NoTasksComponent } from './ui/no-tasks/no-tasks.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TaskComponent,
     TaskFormComponent,
     HeaderComponent,
-    TasksWidgetComponent
+    TasksWidgetComponent,
+    NoTasksComponent
   ],
   imports: [
     BrowserModule,

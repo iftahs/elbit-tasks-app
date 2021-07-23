@@ -1,2 +1,2 @@
-<app-tasks [tasks]="notDoneTasks" title="To Do"></app-tasks>
-<app-tasks [tasks]="doneTasks" title="Done"></app-tasks>
+<app-tasks [tasks]="notDoneTasks" [title]="'To Do'" noTasksMessage="You left no tasks to do. Well done!"></app-tasks>
+<app-tasks [tasks]="doneTasks" [title]="'Done'"  noTasksMessage="Nothing is done yet. Hurry up!"></app-tasks>

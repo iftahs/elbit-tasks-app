@@ -3,4 +3,5 @@
     <ng-container *ngFor="let task of tasks">
         <app-task [task]="task"></app-task>
     </ng-container>
+    <app-no-tasks *ngIf="tasks.length === 0" [message]="noTasksMessage"></app-no-tasks>
 </div>
