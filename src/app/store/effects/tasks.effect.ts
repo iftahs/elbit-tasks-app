@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError, exhaustMap, switchMap, tap } from 'rxjs/operators';
 import { concat, EMPTY, of } from 'rxjs';
 import { TasksService } from "src/app/services/tasksService";
 import { ActionTypes, addTask, deleteTask, editTask, openErrorModal } from "../actions/tasks.actions";import { Router } from "@angular/router";
-import { Task } from "src/app/models/task";
+import { Task, TasksState } from "src/app/models/task";
+import { Store } from "@ngrx/store";
 ;
 
 @Injectable()
@@ -79,13 +80,15 @@ export class TasksEffects {
 
     editTask$ = createEffect(() => this.actions$.pipe(
         ofType(editTask),
-        exhaustMap((action) => this.tasksService.update(action.task)
+        concatLatestFrom(action => this.store.select(state => state.tasksReducer.tasks)),
+        exhaustMap(([action, tasks]) => this.tasksService.update(action.task)
             .pipe(
                 map((res) => {
+                    const isDone = tasks.find(t => t.ssid === action.task.ssid)?.isDone;
                     const task: Task = {
                         title: res.title ?? action.task.title ?? '',
                         description: res.description ?? action.task.description ?? '',
-                        isDone: res.isDone ?? action.task.isDone ?? false,
+                        isDone: res.isDone ?? isDone ?? false,
                         ssid: action.task.ssid ?? ''
                     }
 
@@ -106,6 +109,7 @@ export class TasksEffects {
     constructor(
         private actions$: Actions,
         private tasksService: TasksService,
-        private router: Router
+        private router: Router,
+        private store: Store<{tasksReducer: TasksState}>
     ) { }
 }
