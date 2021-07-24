@@ -15,6 +15,12 @@ export class TasksEffects {
         mergeMap(() => this.tasksService.getAll()
             .pipe(
                 map(tasks => {
+                    if (!tasks) {
+                        return {
+                            type: ActionTypes.fetchTasksDone,
+                            tasks: []
+                        }
+                    }
                     const manipulatedTasks = Object.keys(tasks).map(key => {
                         return {
                             ssid: key,
