@@ -8,4 +8,5 @@ export interface Task {
 export interface TasksState {
     tasks: Task[];
     isLoading: boolean;
-}
+    error?: string;
+};

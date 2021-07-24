@@ -13,6 +13,7 @@ import { addTask, editTask } from 'src/app/store/actions/tasks.actions';
 export class TaskFormComponent implements OnInit {
   editMode = false;
   ssid?: string;
+  isLoading$ = this.store.select(state => state.tasksReducer.isLoading);;
 
   constructor(private fb: FormBuilder, private store: Store<{ tasksReducer: TasksState }>, private router: Router, private route: ActivatedRoute) { }
 

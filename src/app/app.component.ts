@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<{tasksReducer: TasksState}>) {}
 
   isLoading$: Observable<boolean> = this.store.select(state => state.tasksReducer.isLoading);
+  error$: Observable<string | undefined> = this.store.select(state => state.tasksReducer.error);
 
   ngOnInit() {
     this.store.dispatch({ type: ActionTypes.fetchTasks });

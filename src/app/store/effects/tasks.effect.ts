@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError, exhaustMap, switchMap, tap } from 'rxjs/operators';
-import { concat, EMPTY } from 'rxjs';
+import { concat, EMPTY, of } from 'rxjs';
 import { TasksService } from "src/app/services/tasksService";
-import { ActionTypes, addTask, deleteTask, editTask } from "../actions/tasks.actions";import { Router } from "@angular/router";
+import { ActionTypes, addTask, deleteTask, editTask, openErrorModal } from "../actions/tasks.actions";import { Router } from "@angular/router";
 import { Task } from "src/app/models/task";
 ;
 
@@ -27,7 +27,7 @@ export class TasksEffects {
                         tasks: manipulatedTasks
                     }
                 }),
-                catchError(() => EMPTY)
+                catchError(() => of({type: ActionTypes.openErrorModal, message: 'Failed to fetch tasks from server.'}))
             ))
     ));
 
@@ -41,7 +41,7 @@ export class TasksEffects {
                         ssid: action.ssid
                     }
                 }),
-                catchError(() => EMPTY)
+                catchError(() => of({type: ActionTypes.openErrorModal, message: 'Failed to delete task.'}))
             ))
     ));
 
@@ -62,7 +62,7 @@ export class TasksEffects {
                         task: task
                     }
                 }),
-                catchError(() => EMPTY)
+                catchError(() => of({type: ActionTypes.openErrorModal, message: 'Failed to add new task.'}))
             ))
     ));
 
@@ -88,7 +88,7 @@ export class TasksEffects {
                         task: task
                     }
                 }),
-                catchError(() => EMPTY)
+                catchError(() => of({type: ActionTypes.openErrorModal, message: 'Failed to update task.'}))
             ))
     ));
 

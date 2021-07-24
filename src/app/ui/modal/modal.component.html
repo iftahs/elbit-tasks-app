@@ -1,0 +1,10 @@
+<div class="modal">
+    <div class="modal__backdrop" (click)="onCloseModal()"></div>
+    <div class="modal__container">
+        <div class="modal__container__header"><h2>{{ title }}</h2></div>
+        <div class="modal__container__body">{{  message }}</div>
+        <div class="modal__container__actions">
+            <button (click)="onCloseModal()">Ok</button>
+        </div>
+    </div>
+</div>

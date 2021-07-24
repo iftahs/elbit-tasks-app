@@ -10,6 +10,8 @@ export enum ActionTypes {
     addTaskDone = '[Tasks] Add Task Done',
     editTask = '[Tasks] Edit Task',
     editTaskDone = '[Tasks] Edit Task Done',
+    openErrorModal = '[Tasks] Open Error Modal',
+    closeErrorModal = '[Tasks] Close Error Modal'
 }
 
 export const fetchTasks = createAction(ActionTypes.fetchTasks);
@@ -20,3 +22,5 @@ export const addTask = createAction(ActionTypes.addTask, props<{ task: Partial<T
 export const addTaskDone = createAction(ActionTypes.addTaskDone, props<{ task: Task }>());
 export const editTask = createAction(ActionTypes.editTask, props<{ task: Partial<Task> }>());
 export const editTaskDone = createAction(ActionTypes.editTaskDone, props<{ task: Task }>());
+export const openErrorModal = createAction(ActionTypes.openErrorModal, props<{ message: string }>())
+export const closeErrorModal = createAction(ActionTypes.closeErrorModal);

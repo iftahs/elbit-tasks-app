@@ -25,6 +25,9 @@
       margin: 10px;
       background-color: $done-color;
       cursor: pointer;
+      &:hover {
+        opacity: 80%;
+      }
     }
     &__title {
       font-size: 24px;
@@ -49,10 +52,16 @@
 
     div:nth-child(1) {
       background-color: $edit-color;
+      &:hover {
+        opacity: 80%;
+      }
     }
 
     div:nth-child(2) {
       background-color: $delete-color;
+      &:hover {
+        opacity: 80%;
+      }
     }
   }
 }

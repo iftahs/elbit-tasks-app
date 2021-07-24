@@ -6,14 +6,9 @@ import { Task } from 'src/app/models/task';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent {
   @Input() tasks: Task[] = [];
   @Input() title: string = '';
   @Input() noTasksMessage: string = '';
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

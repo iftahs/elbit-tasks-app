@@ -8,7 +8,7 @@
         <textarea formControlName="description" rows="5" ></textarea>
     </div>
     <div class="form__actions">
-        <button class="form__actions--cancel" type="button" (click)="onCancel()">CANCEL</button>
-        <button class="form__actions--add" type="submit" [disabled]="form.invalid">{{editMode ? 'UPDATE' : 'ADD' }} TASK</button>
+        <button class="form__actions--cancel" type="button" (click)="onCancel()" [disabled]="(isLoading$ | async)">CANCEL</button>
+        <button class="form__actions--add" type="submit" [disabled]="form.invalid || (isLoading$ | async)">{{editMode ? 'UPDATE' : 'ADD' }} TASK</button>
     </div>
 </form>

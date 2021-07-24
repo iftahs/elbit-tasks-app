@@ -18,6 +18,8 @@ import { TasksEffects } from './store/effects/tasks.effect';
 import { TasksWidgetComponent } from './components/tasks-widget/tasks-widget.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NoTasksComponent } from './ui/no-tasks/no-tasks.component';
+import { ModalComponent } from './ui/modal/modal.component';
+import { LoaderComponent } from './ui/loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,9 @@ import { NoTasksComponent } from './ui/no-tasks/no-tasks.component';
     TaskFormComponent,
     HeaderComponent,
     TasksWidgetComponent,
-    NoTasksComponent
+    NoTasksComponent,
+    ModalComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

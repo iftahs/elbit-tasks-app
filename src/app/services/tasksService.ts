@@ -7,10 +7,9 @@ import { Task } from "../models/task";
   providedIn: 'root'
 })
 export class TasksService {
-  baseUrl = 'https://intuit-todo-app-default-rtdb.europe-west1.firebasedatabase.app/todos';
+  baseUrl = 'https://elbit-tasks-app-default-rtdb.europe-west1.firebasedatabase.app//todos';
 
   constructor(private http: HttpClient) { }
-
 
   getAll(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}.json`);
@@ -25,7 +24,6 @@ export class TasksService {
   }
 
   update(task: Partial<Task>): Observable<Partial<Task>> {
-    console.log(task);
     return this.http.patch<Partial<Task>>(`${this.baseUrl}/${task.ssid}/.json`, task);
   }
 }

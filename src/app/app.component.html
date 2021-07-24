@@ -1,8 +1,9 @@
 <div class="app">
+    <app-modal [title]="'Error Occured'" [message]="error$ | async" *ngIf="error$ | async"></app-modal>
     <app-header></app-header>
     <div class="app__add-todo-button"  title="Create new task" [attr.disabled]="(isLoading$ | async)" routerLink="/edit">
         <img src="assets/icons/add_white_24dp.svg" *ngIf="!(isLoading$ | async)">
-        <img src="assets/icons/sync_white_24dp.svg" *ngIf="(isLoading$ | async)" class="app__add-todo-button__loading">
+        <app-loader *ngIf="(isLoading$ | async)"></app-loader>
     </div>
     <main>
         <router-outlet></router-outlet>
